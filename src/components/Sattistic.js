@@ -1,4 +1,5 @@
 import { Stat } from './feedback.styled';
+import{Notification} from './Notification'
 const countTotalFeedback = ({ good, neutral, bad }) => {
   return good + neutral + bad;
 };
@@ -11,6 +12,11 @@ const countPositiveFeedbackPercentage = ({ good, neutral, bad }) => {
 export const Statistics = ({ stateData }) => {
   const totalFeedback = countTotalFeedback(stateData);
   const positiveFeedbackPercentage = countPositiveFeedbackPercentage(stateData);
+  if (totalFeedback===0) {
+    return(
+      <Notification/>
+    )
+  } else {
   return (
     <Stat>
       <span>Good:{stateData.good}</span>
@@ -20,4 +26,5 @@ export const Statistics = ({ stateData }) => {
       <span>Positive feedback:{positiveFeedbackPercentage}%</span>
     </Stat>
   );
-};
+}
+}
